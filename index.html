@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="./style/styleHome.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <script src="./js/scriptHome.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <title>Home Doc</title>
+</head>
+
+<body id="homePage">
+  <div class="page">
+    <div class="card">
+      <header class="card-header">
+        <h1>Documentation Generator</h1>
+        <p>Geração padronizada de documentos corporativos do TI.</p>
+      </header>
+
+      <section class="card-content">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sistema">Sistema</label>
+            <select id="sistema">
+              <option value=""></option>
+              <option value="fluig">Fluig</option>
+              <option value="protheus">Protheus</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="divTipo" style="display: none">
+            <label for="tipo">Tipo</label>
+            <select id="tipo">
+              <option value=""></option>
+              <option value="processo">Processo</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="divProces" style="display: none">
+            <label for="processo">Processo</label>
+            <select id="processo">
+              <option value=""></option>
+              <option value="FP_CP" data-tipo="fluig">Cadastro de Produtos</option>
+              <option value="FP_PC" data-tipo="fluig">Pedido de Compras</option>
+              <option value="FP_SMU" data-tipo="fluig">Solicitação de Materiais</option>
+              <option value="FP_SC" data-tipo="fluig">Solicitação de Serviços</option>
+              <option value="FP_PG" data-tipo="fluig">Solicitação de Pagamento</option>
+              <option value="FP_REE" data-tipo="fluig">Reembolso</option>
+              <option value="PP_PED" data-tipo="protheus">PC</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="divConsulta" style="display: none">
+            <label for="consulta">Processo</label>
+            <select id="consulta">
+              <option value=""></option>
+              <option value="FC_CP" data-tipo="fluig">Consulta Produto</option>
+              <option value="FC_PED" data-tipo="protheus">PC</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="actions">
+          <div style="display: none;">
+            <button class="btn primary" id="especProj">Especificação de Projeto</button>
+            <button class="btn secondary">Plano de Projeto</button>
+          </div>
+          <button class="btn outline" id="cTeste">Cenário de Teste</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

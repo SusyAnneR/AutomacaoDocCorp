@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Especificação de Projetos</title>
+  <script src="/src/js/scriptEspecifica.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+  <link rel="stylesheet" href="/src/style/styleEspecifica.css">
+
+</head>
+
+<body id="especificaProjetos">
+
+  <div id="header-only">
+
+    <img src="/img/logo-ocp.png" alt="logo-ocp">
+
+    <div class="barra-status">
+      <div class="segmento verde"></div>
+      <div class="segmento amarelo"></div>
+      <div class="segmento vermelho"></div>
+    </div>
+
+    <h1>Especificação Funcional</h1>
+
+  </div>
+  <div id="conteudo-word">
+    <form class="form-projeto">
+      <fieldset id="info_Projeto">
+        <h3>1. Informação do Projeto</h3>
+
+        <div class="linha">
+          <label for="nomeProjeto">Nome do Projeto:</label>
+          <input type="text" id="nomeProjeto" name="nomeProjeto">
+        </div>
+
+        <div class="linha">
+          <label for="nomePatrocina">Patrocinadores:</label>
+          <input type="text" id="nomePatrocina" name="nomePatrocina">
+        </div>
+
+        <div class="linha">
+          <label for="keyUser">Key users:</label>
+          <input type="text" id="keyUser" name="keyUser">
+        </div>
+
+        <div class="linha">
+          <label for="responsavel">Responsável pelo Projeto:</label>
+          <select id="responsavel" name="responsavel">
+            <option></option>
+            <option>Eduarda Fragoso</option>
+            <option>Lorena Ferrete</option>
+          </select>
+        </div>
+
+        <div class="linha">
+          <label for="versao">Versão:</label>
+          <input type="text" id="versao" name="versao" value="1.0">
+        </div>
+      </fieldset>
+
+
+      <fieldset id="escopo">
+        <h3>3. Escopo do Projeto</h3>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">3.1 Objetivos</h3>
+          <textarea name="" id=""></textarea>
+        </div>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">3.2 Situação Atual</h3>
+          <textarea name="" id=""></textarea>
+        </div>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">3.3 Situação Futura</h3>
+          <textarea name="" id=""></textarea>
+        </div>
+
+      </fieldset>
+
+      <fieldset id="Requisitos">
+        <h3>4. Requisitos</h3>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">4.1 Requisitos Funcionais</h3>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Descrição da Necessidade</th>
+            </tr>
+          </table>
+        </div>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">4.2 Situação Atual</h3>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Descrição da Necessidade</th>
+            </tr>
+          </table>
+        </div>
+
+        <div class="div_Escopo">
+          <h3 class="subtitle">4.3 Detalhamento dos Requisitos</h3>
+          <textarea name="" id=""></textarea>
+        </div>
+
+      </fieldset>
+
+    </form>
+  </div>
+
+  <button type="button" id="gerarEspecifica">Gerar Especificacao</button>
+</body>
+
+</html>
