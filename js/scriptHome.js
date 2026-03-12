@@ -176,7 +176,7 @@ function initCenarioTeste() {
   const btnAddPre = document.querySelector(".btn-add-pre");
 
   if (procesCenario) {
-    textH1.textContent;
+    textH1.textContent += procesCenario.descProces;
 
     // ---------- Pré-condições ----------
     btnAddPre.addEventListener("click", () => {
@@ -221,9 +221,9 @@ function initCenarioTeste() {
     } else {
       fetchCenariosSupabase(procesCenario.id)
         .then((data) => {
-          console.log("Dados retornados:", data); 
-          console.log("procesCenario.id:", procesCenario.id); 
-          cenarios = data; 
+          console.log("Dados retornados:", data);
+          console.log("procesCenario.id:", procesCenario.id);
+          cenarios = data;
           statusTable = renderTabela(procesCenario.id, pageCTest, cenarios);
         })
         .catch((err) => {
@@ -234,11 +234,19 @@ function initCenarioTeste() {
   }
 
   pageCTest.querySelector("#gerarCena").addEventListener("click", () => {
+
+    const numTicket = document.getElementById("inputTicket").value;
+
     if (statusTable == false) {
       alert("Nenhum cenário encontrado!");
+
+    } else if (numTicket == "") {
+      alert("Favor preencher o número do Ticket Movidesk.");
+
     } else {
       printCenario(pageCTest, procesCenario.descProces);
     }
+    
   });
 
   initModalAdicionarCenario(procesCenario);
@@ -275,9 +283,9 @@ function renderTabela(processo, page, cenarios) {
     tr.innerHTML = `
       <td><button class="btn-delete"><i class="bi bi-trash3"></i></button></td>
       <td>${index + 1}</td>
-      <td>${cenario.CENARIO ?? ""}</td>
+      <td style="text-align: left; padding-left: 16px;">${cenario.CENARIO ?? ""}</td>
       <td>
-        <ul>${aceiteArray.map((item) => `<li>${item}</li>`).join("")}</ul>
+        <ul style="text-align: left; padding-left: 16px;">${aceiteArray.map((item) => `<li>${item}</li>`).join("")}</ul>
       </td>
       <td>
         <ul style="text-align: left; padding-left: 16px;">${passosArray.map((p) => `<li>${p}</li>`).join("")}</ul>
@@ -561,9 +569,7 @@ function initModalAdicionarCenario(procesCenario) {
     const idProces = document.getElementById("modalIdProces").value.trim();
     const proces = document.getElementById("modalProcesso").value.trim();
     const cenario = document.getElementById("modalCenario").value.trim();
-    const criterioAceite = document
-      .getElementById("modalCriterioAceite")
-      .value.trim();
+    const criterioAceite = document.getElementById("modalCriterioAceite").value.trim();
     const prioridade = document.getElementById("modalPrioridade").value;
     const dificuldade = document.getElementById("modalDificuldade").value;
 
@@ -586,17 +592,27 @@ function initModalAdicionarCenario(procesCenario) {
       return;
     }
 
+    removeCaractEspeciais(cenario,criterioAceite,passosTexto);
+
+
+  const cenarioTratado       = removeCaractEspeciais(cenario);
+  const criterioAceiteTratado = removeCaractEspeciais(criterioAceite);
+  const passosTextoTratado   = removeCaractEspeciais(passosTexto);
+
+
     const novoRegistro = {
       ID_PROCES: idProces,
       PROCESSO: proces,
-      CENARIO: cenario,
-      CRITERIO_ACEITE: criterioAceite,
-      PASSOS: passosTexto,
+      CENARIO: cenarioTratado,
+      CRITERIO_ACEITE: criterioAceiteTratado,
+      PASSOS: passosTextoTratado,
       PRIORIDADE: prioridade,
       DIFICULDADE: dificuldade,
       EVIDENCIA: "Evidencias da movimentacao correta da solicitacao",
       STATUS: "Pendente",
     };
+
+
 
     btnSalvar.textContent = "Salvando...";
     btnSalvar.disabled = true;
@@ -673,4 +689,14 @@ function initModalAdicionarCenario(procesCenario) {
     passosLista.innerHTML = "";
     adicionarPasso(); // começa com 1 passo vazio
   }
+}
+
+
+
+function removeCaractEspeciais(texto) {
+  return texto
+    .normalize("NFD")                        // separa letras dos acentos
+    .replace(/[\u0300-\u036f]/g, "")         // remove os acentos
+    .replace(/[^a-zA-Z0-9\s.,;:!?\-\n<>]/g, "") // remove caracteres especiais
+    .trim();
 }
