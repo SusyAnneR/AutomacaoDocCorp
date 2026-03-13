@@ -1,6 +1,5 @@
 // ============================================================
 //  CONFIGURAÇÃO SUPABASE
-//  Substitua as constantes abaixo pelas suas credenciais
 // ============================================================
 const SUPABASE_URL = "https://kondbzlavytcmyhwxmqn.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -13,7 +12,7 @@ const COLUNA_PROCESSO = "ID_PROCES";
 // ============================================================
 async function fetchCenariosSupabase(processoId) {
   const url = `${SUPABASE_URL}/rest/v1/${TABELA}?${COLUNA_PROCESSO}=eq.${processoId}&select=*`;
-  console.log("URL chamada:", url); // 👈 e isso
+  // console.log("URL chamada:", url); 
 
   const response = await fetch(url, {
     headers: {
@@ -29,7 +28,7 @@ async function fetchCenariosSupabase(processoId) {
     );
   }
 
-  return await response.json(); // retorna array de objetos
+  return await response.json(); 
 }
 
 // ============================================================
@@ -221,8 +220,8 @@ function initCenarioTeste() {
     } else {
       fetchCenariosSupabase(procesCenario.id)
         .then((data) => {
-          console.log("Dados retornados:", data);
-          console.log("procesCenario.id:", procesCenario.id);
+          // console.log("Dados retornados:", data);
+          // console.log("procesCenario.id:", procesCenario.id);
           cenarios = data;
           statusTable = renderTabela(procesCenario.id, pageCTest, cenarios);
         })
@@ -292,7 +291,7 @@ function renderTabela(processo, page, cenarios) {
       </td>
       <td>${cenario.PRIORIDADE ?? ""}</td>
       <td>${cenario.DIFICULDADE ?? ""}</td>
-      <td>${cenario.EVIDENCIAS ?? ""}</td>
+      <td>${cenario.EVIDENCIA ?? ""}</td>
       <td>${cenario.STATUS ?? ""}</td>
     `;
 
