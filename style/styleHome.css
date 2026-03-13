@@ -52,13 +52,19 @@ body {
 .form-row {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 20px;
 }
 
-.form-group {
+#divTipo, #divSistema  {
   display: flex;
   flex-direction: column;
-  width: 260px;
+  width: 200px;
+}
+
+#divProces,#divConsulta  {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
 }
 
 label {
